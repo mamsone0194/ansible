@@ -5,6 +5,7 @@
   tasks:
     - name: Ping vers les cibles
       ping:
+        data: coucou
 
 - name: Acte II (acte vide pour l'instant)
   hosts: servers
