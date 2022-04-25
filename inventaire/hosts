@@ -1,0 +1,14 @@
+[servers]
+srv1 ansible_host=192.168.56.110
+srv2 ansible_host=192.168.56.120
+
+[debian]
+srv1
+srv2
+
+[centos]
+srv3
+
+[linux:children]
+debian
+centos
