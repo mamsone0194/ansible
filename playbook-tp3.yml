@@ -25,8 +25,17 @@
       path: /etc/apache2/ports.conf
       regex: ^Listen 80$
       line: Listen 81
+    notify: restart_apache
 
+  - name: Tâche bidon
+    debug:
+      msg: C'est presque fini !
+
+  handlers:
   - name: Redémarrage du service Apache
     systemd:
       name: apache2
       state: restarted
+    listen:
+      - restart_apache
+      - autre_canal
