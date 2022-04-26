@@ -45,4 +45,4 @@
 
     - name: Accès à une structure de donnée complexe -> Afficher le login de curt
       debug:
-        msg: "Login n°2: ..."
+        msg: "Login n°2: {{ users[1].login }}"
