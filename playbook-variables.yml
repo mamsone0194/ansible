@@ -10,6 +10,10 @@
       - Déborah
       - Frédéric
       - Mamadi
+    formation:
+      intitulé: Ansible
+      début: 2022-04-25
+      fin: 2022-04-29
 
   tasks:
     - name: Utilisation d'une variable scalaire
@@ -23,3 +27,7 @@
     - name: Accès à un élément d'une liste
       debug:
         msg: "Premier stagiaire: {{ stagiaires[0] }}"
+
+    - name: Utilisation d'une variable tableau associatif
+      debug:
+        msg: "Formation: {{ formation }}"
