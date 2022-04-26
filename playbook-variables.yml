@@ -14,6 +14,13 @@
       intitulé: Ansible
       début: 2022-04-25
       fin: 2022-04-29
+    users:
+      - login: bob
+        uid: 1000
+        gid: 1000
+      - login: curt
+        uid: 1010
+        gid: 1010
 
   tasks:
     - name: Utilisation d'une variable scalaire
@@ -35,3 +42,7 @@
     - name: Accès à une clé d'un tableau associatif
       debug:
         msg: "Intitulé: {{ formation.intitulé }}"
+
+    - name: Accès à une structure de donnée complexe -> Afficher le login de curt
+      debug:
+        msg: "Login n°2: ..."
