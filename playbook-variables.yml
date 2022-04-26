@@ -49,8 +49,8 @@
 
     - name: Recours à une extra-variable
       debug:
-        msg: "nb1: {{ nb1 }}"
+        msg: "nb1: {{ nb1|default(10) }}"
 
     - name: Recours à une extra-variable
       debug:
-        msg: "nb2: {{ nb2 }}"
+        msg: "nb2: {{ nb2|default(10) }}"
