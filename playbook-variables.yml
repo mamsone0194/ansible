@@ -31,3 +31,7 @@
     - name: Utilisation d'une variable tableau associatif
       debug:
         msg: "Formation: {{ formation }}"
+
+    - name: Accès à une clé d'un tableau associatif
+      debug:
+        msg: "Intitulé: {{ formation.intitulé }}"
