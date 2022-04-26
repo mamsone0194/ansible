@@ -1,0 +1,20 @@
+---
+- name: Installation du serveur Apache
+  hosts: servers
+  become: yes
+
+  tasks:
+  - name: Mise à jour du cache apt
+    apt:
+      update_cache: yes
+
+  - name: Installation du serveur Apache
+    package:
+      name: apache2
+      state: present
+
+  - name: Activation et démarrage du service
+    systemd:
+      name: apache2
+      state: started
+      enabled: yes
