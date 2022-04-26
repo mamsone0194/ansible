@@ -1,0 +1,10 @@
+---
+- name: Redémarrage du service rsyslog
+  hosts: servers
+
+  tasks:
+    - name: Redémarrage
+      systemd:
+        name: rsyslog
+        state: restarted
+      become: true
