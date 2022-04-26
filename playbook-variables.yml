@@ -1,0 +1,17 @@
+---
+- name: Introduction aux variables
+  hosts: srv1
+
+  vars:
+    stage: ansible Initiation+Approfondissement
+    stagiaires:
+      - André
+      - Younes
+      - Déborah
+      - Frédéric
+      - Mamadi
+
+  tasks:
+    - name: Utilisation d'une variable
+      debug:
+        var: stage
