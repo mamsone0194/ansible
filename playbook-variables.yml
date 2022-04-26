@@ -2,6 +2,11 @@
 - name: Introduction aux variables
   hosts: srv1
 
+  vars_prompt:
+    - name: login
+      prompt: Login
+      private: yes
+
   tasks:
     - name: Inclusion d'un fichier de variables
       include_vars:
@@ -42,3 +47,7 @@
     - name: Autre filtre
       debug:
         msg: "Formation: {{ formation.intitulé|upper }}"
+
+    - name: Variable interactive
+      debug:
+        msg: "Login: {{ login }}"
