@@ -2,27 +2,11 @@
 - name: Introduction aux variables
   hosts: srv1
 
-  vars:
-    stage: ansible Initiation+Approfondissement
-    stagiaires:
-      - André
-      - Younes
-      - Déborah
-      - Frédéric
-      - Mamadi
-    formation:
-      intitulé: Ansible
-      début: 2022-04-25
-      fin: 2022-04-29
-    users:
-      - login: bob
-        uid: 1000
-        gid: 1000
-      - login: curt
-        uid: 1010
-        gid: 1010
-
   tasks:
+    - name: Inclusion d'un fichier de variables
+      include_vars:
+        file: testvars.yml
+
     - name: Utilisation d'une variable scalaire
       debug:
         msg: "Stage: {{ stage }}"
