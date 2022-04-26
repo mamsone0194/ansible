@@ -8,7 +8,7 @@
     - name: Mise à jour du cache apt
       apt:
         update_cache: true
-      tags: never
+      when: ansible_distribution|lower == 'debian'
 
     - name: Installation du serveur Apache
       package:
