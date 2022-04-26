@@ -12,6 +12,6 @@
       - Mamadi
 
   tasks:
-    - name: Utilisation d'une variable
+    - name: Utilisation d'une variable scalaire
       debug:
-        var: stage
+        msg: "Stage: {{ stage }}"
