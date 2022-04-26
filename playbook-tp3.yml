@@ -2,6 +2,7 @@
 - name: Installation du serveur Apache
   hosts: servers
   become: yes
+  gather_facts: no
 
   tasks:
   - name: Mise à jour du cache apt
@@ -18,3 +19,14 @@
       name: apache2
       state: started
       enabled: yes
+
+  - name: Modification du port d'écoute
+    lineinfile:
+      path: /etc/apache2/ports.conf
+      regex: ^Listen 80$
+      line: Listen 81
+
+  - name: Redémarrage du service Apache
+    systemd:
+      name: apache2
+      state: restarted
