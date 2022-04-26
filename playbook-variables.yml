@@ -19,3 +19,7 @@
     - name: Utilisation d'une variable de liste
       debug:
         msg: "Liste des stagiaires: {{ stagiaires }}"
+
+    - name: Accès à un élément d'une liste
+      debug:
+        msg: "Premier stagiaire: {{ stagiaires[0] }}"
