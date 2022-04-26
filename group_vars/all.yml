@@ -1,1 +1,2 @@
 apache_port: 82
+apache_html_dir: /var/www/html

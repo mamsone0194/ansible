@@ -35,13 +35,12 @@
         line: Listen {{ apache_port }}
       notify: restart_apache
 
-    - meta: flush_handlers
-
-    - name: Tâche bidon
-      debug:
-        msg: C'est presque fini !
-      notify: restart_apache
-      changed_when: true
+    - name: Déploiement du fichier index.html
+      copy:
+        src: html/index.html
+        dest: "{{ apache_html_dir }}"
+        owner: "{{ apache_html_owner }}"
+        mode: 0600
 
   handlers:
     - name: Redémarrage du service Apache
