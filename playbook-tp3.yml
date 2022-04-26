@@ -21,6 +21,13 @@
         state: started
         enabled: true
 
+    - name: Arrêt et désactivation du service firewalld sur CentOS
+      systemd:
+        name: firewalld
+        state: stopped
+        enabled: false
+      when: ansible_distribution|lower == 'centos'
+
     - name: Modification du port d'écoute
       lineinfile:
         path: "{{ apache_port_file }}"
