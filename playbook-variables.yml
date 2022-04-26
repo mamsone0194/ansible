@@ -54,3 +54,7 @@
     - name: Recours à une extra-variable
       debug:
         msg: "nb2: {{ nb2|default(10) }}"
+
+    - name: Autre filtre
+      debug:
+        msg: "Formation: {{ formation.intitulé|upper }}"
