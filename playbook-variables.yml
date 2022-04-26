@@ -15,3 +15,7 @@
     - name: Utilisation d'une variable scalaire
       debug:
         msg: "Stage: {{ stage }}"
+
+    - name: Utilisation d'une variable de liste
+      debug:
+        msg: "Liste des stagiaires: {{ stagiaires }}"
