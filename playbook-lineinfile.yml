@@ -1,0 +1,15 @@
+---
+- name: Module lineinfile
+  hosts: srv1
+
+  tasks:
+    - name: Ajout de la ligne 'ligne 7' dans le fichier data.txt
+      lineinfile:
+        path: data.txt
+        line: ligne 7
+
+    - name: Transformer 'ligne 6' en 'ligne 06' dans le fichier data.txt
+      lineinfile:
+        path: data.txt
+        regex: ^ligne 6$
+        line: ligne 06
