@@ -7,11 +7,15 @@
   </head>
   <body>
     <h4>Accueil du site {{ inventory_hostname }}</h4>
-    Stagiaires:<br>
-    <ul>
-    {% for stagiaire in stagiaires %}
-       <li>{{ stagiaire }}</li>
+    {%- for stagiaire in stagiaires -%}
+      {% if loop.first == true -%}
+         Stagiaires:<br>
+	 <ul>
+      {% endif %}
+      <li>{{ loop.index }} - {{ stagiaire }}</li>
+      {% if loop.last == true %}
+         </ul>
+      {% endif %}
     {% endfor %}
-    </ul>
   </body>
 </html>
