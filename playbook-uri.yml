@@ -1,0 +1,14 @@
+---
+- name: Récupération HTTP
+  hosts: srv1
+
+  tasks:
+    - name: Récupération du fichier index.html
+      uri:
+        url: "http://{{ ansible_host }}:{{ apache_port }}/index.html"
+        return_content: true
+      register: result
+
+    - name: Affichage
+      debug:
+        msg: "result: {{ result.content.split('\n')[7] }}"

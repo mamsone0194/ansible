@@ -1,0 +1,20 @@
+---
+poids: 15
+stagiaires:
+  - André
+  - Younes
+  - Déborah
+  - Frédéric
+  - Mamadi
+stage:
+  intitulé: ansible
+  début: 2022/04/25
+  fin: 2022/04/29
+  type: distanciel
+users:
+  - login: bob
+    uid: 1000
+    gid: 1000
+  - login: curt
+    uid: 1010
+    gid: 1010
