@@ -1,0 +1,8 @@
+---
+- name: Variables magiques
+  hosts: all
+
+  tasks:
+    - name: inventory_hostname
+      debug:
+        msg: "hostname: {{ inventory_hostname }}"  
