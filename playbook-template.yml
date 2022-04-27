@@ -1,0 +1,14 @@
+---
+- name: Introduction aux templates
+  hosts: srv1
+
+  tasks:
+    - name: Chargement des variables
+      include_vars:
+        file: testvars.yml
+
+    - name: Liste des stagiaires dans index.html
+      template:
+        src: html/index.html.j2
+        dest: "{{ apache_html_dir }}/index.html"
+      become: true
