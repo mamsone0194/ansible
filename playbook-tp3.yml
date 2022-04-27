@@ -36,11 +36,12 @@
       notify: restart_apache
 
     - name: Déploiement du fichier index.html
-      copy:
-        src: html/index.html
-        dest: "{{ apache_html_dir }}"
+      template:
+        src: html/index.html.j2
+        dest: "{{ apache_html_dir }}/index.html"
         owner: "{{ apache_html_owner }}"
         mode: 0600
+      tags: index
 
   handlers:
     - name: Redémarrage du service Apache
