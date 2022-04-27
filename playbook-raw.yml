@@ -5,3 +5,8 @@
   tasks:
     - name: Commande whoami
       raw: whoami
+      register: result
+
+    - name: Affichage de la variable result
+      debug:
+        msg: "result: {{ result }}"
