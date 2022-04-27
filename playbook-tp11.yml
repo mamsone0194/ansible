@@ -1,0 +1,62 @@
+---
+- name: Micro-TP n°11
+  hosts: all
+  gather_facts: yes
+
+  tasks:
+    - name: Suppression du fichier
+      file:
+        path: files/html/infos_all.html
+        state: absent
+      delegate_to: localhost
+      run_once: true
+
+    - name: Création minimale du fichier
+      copy:
+        dest: files/html/infos_all.html
+        content: |
+          <!DOCTYPE html>
+          <html>
+            <head>
+              <title>Accueil</title>
+            </head>
+            <body>
+              <h4>Accueil du site</h4>
+      delegate_to: localhost
+      run_once: true
+
+    - name: Récupération des infos et insertion dans le fichier infos_all.html
+      lineinfile:
+        line: |
+          {{ inventory_hostname }}<br>
+          {{ ansible_distribution }}-{{ ansible_distribution_version }}<br>
+          RAM: {{ ansible_memtotal_mb }} MO<br>
+          {% for iface in ansible_interfaces|sort -%}
+            {% if iface != 'lo' -%}
+              {{ iface }}: {{ lookup('vars','ansible_'+iface).ipv4.address }}<br>
+            {% endif %}
+          {% endfor %}
+        dest: files/html/infos_all.html
+      delegate_to: localhost
+
+- name: Acte de fermeture
+  hosts: localhost
+
+  tasks:
+    - name: Fermer le fichier
+      lineinfile:
+        line: |
+          </body>
+          </html>
+        dest: files/html/infos_all.html
+      delegate_to: localhost
+
+- name: Acte de transfert du fichier vers les cibles
+  hosts: all
+  become: true
+
+  tasks:
+    - name: Copie du fichier
+      copy:
+        src: html/infos_all.html
+        dest: "{{ apache_html_dir }}"
