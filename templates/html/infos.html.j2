@@ -1,0 +1,18 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <title>Accueil {{ inventory_hostname }}</title>
+    <meta charset="utf-8">
+  </head>
+  <body>
+    <h4>Informations sur {{ inventory_hostname }}</h4>
+    <table>
+			<tr><td>Distribution</td><td>{{ ansible_distribution }}</td></tr>
+			<tr><td>Version</td><td>{{ ansible_distribution_version }}</td></tr>
+			<tr><td>RAM</td><td>{{ ansible_memtotal_mb }}</td></tr>
+			{% for addr in ansible_all_ipv4_addresses %}
+			<tr><td>Adresse {{ loop.index }}</td><td>{{ addr }}</td></tr>
+      {% endfor %} 
+		</table>
+  </body>
+</html>

@@ -1,0 +1,12 @@
+---
+- name: Micro-TP n°9
+  hosts: all
+  become: true
+  gather_facts: true
+
+  tasks:
+    - name: Template d'informations sur les hôtes (infos.html)
+      template:
+        src: html/infos.html.j2
+        dest: "{{ apache_html_dir }}/infos.html"
+
