@@ -1,0 +1,12 @@
+---
+- name: Délégation
+  hosts: all
+  gather_facts: true
+
+  tasks:
+    - name: Créer un fichier contenant la RAM pour chacune des cibles
+      lineinfile:
+        line: "{{ inventory_hostname }}: {{ ansible_memtotal_mb }}"
+        dest: /tmp/ram.txt
+        create: true
+      delegate_to: localhost
