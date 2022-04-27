@@ -5,9 +5,28 @@
   tasks:
     - name: Commande whoami
       raw: whoami
-      register: result
-      changed_when: result.rc != 0
+      register: result1
 
-    - name: Affichage de la variable result
+    - name: Affichage de la variable result1
       debug:
-        msg: "result: {{ result }}"
+        msg: "result1: {{ result1 }}"
+
+    - name: Commande whoami
+      raw: whoami
+      register: result2
+      become: false
+
+    - name: Affichage de la variable result2
+      debug:
+        msg: "result2: {{ result2 }}"
+
+    - name: On teste les résultats des deux commandes
+      assert:
+        that:
+          - result1.stdout == result2.stdout
+        fail_msg: Résultats différents
+        success_msg: Résultats identiques
+
+    - name: Tâche bidon
+      debug:
+        msg: "Vu ?!"
