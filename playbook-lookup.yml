@@ -1,0 +1,30 @@
+---
+- name: Les lookup
+  hosts: localhost
+  gather_facts: true
+
+  vars:
+    formation: docker
+    form_ansible:
+      début: 2022-04-25
+      fin: 2022-04-25
+    form_docker:
+      début: 2022-05-09
+      fin: 2022-05-13
+
+  tasks:
+    - name: lookup file
+      debug:
+        msg: "Fichier /tmp/ram.txt: {{ lookup('file','/tmp/ram.txt').split('\n') }}"
+
+    - name: lookup dig
+      debug:
+        msg: "kernel.org: {{ lookup('dig','kernel.org') }}"
+
+    - name: lookup env
+      debug:
+        msg: "PWD: {{ lookup('env','PWD') }}"
+
+    - name: lookup vars
+      debug:
+        msg: "{{ formation }} : du {{ lookup('vars','f_'+formation).début }} au {{ lookup('vars','f_'+formation).fin }}"
