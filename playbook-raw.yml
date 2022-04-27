@@ -1,0 +1,7 @@
+---
+- name: Module raw et idempotence
+  hosts: srv1
+
+  tasks:
+    - name: Commande whoami
+      raw: whoami
