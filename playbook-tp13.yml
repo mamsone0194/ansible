@@ -1,0 +1,28 @@
+---
+- name: Création de groupes/comptes
+  hosts: all
+
+  tasks:
+    - name: Chargement de variables
+      include_vars:
+        file: testvars.yml
+      run_once: true
+      tags: always
+
+    - name: Création des groupes, si besoin est
+      group:
+        name: "{{ item.1 }}"
+      loop: "{{ users | subelements('groups') }}"
+      become: true
+      tags: group
+
+    - name: Création des utilisateurs
+      user:
+        name: "{{ item.login }}"
+        uid: "{{ item.uid }}"
+        groups: "{{ item.groups }}"
+        password: "{{ item.password | password_hash('sha512','123456') }}"
+        shell: "{{ item.shell }}"
+      loop: "{{ users }}"
+      become: true
+      tags: login

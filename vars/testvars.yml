@@ -14,14 +14,16 @@ users:
     uid: 1010
     gid: 1010
     password: azerty
+    shell: /bin/bash
     groups:
       - adm
       - net
       - dev
-  - login: curt
+  - login: loe
     uid: 1020
     gid: 1020
     password: azerty
+    shell: /bin/bash
     groups:
       - dev
       - info
