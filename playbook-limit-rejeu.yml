@@ -1,0 +1,9 @@
+---
+- name: Playbook de transfert de fichier
+  hosts: servers
+
+  tasks:
+    - name: Copie du fichier data.txt vers les cibles
+      copy:
+        src: data.txt
+        dest: /home/stagiaire/datas
