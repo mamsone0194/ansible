@@ -13,6 +13,7 @@ users:
   - login: bob
     uid: 1010
     gid: 1010
+    password: azerty
     groups:
       - adm
       - net
@@ -20,6 +21,7 @@ users:
   - login: curt
     uid: 1020
     gid: 1020
+    password: azerty
     groups:
       - dev
       - info
