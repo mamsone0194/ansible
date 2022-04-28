@@ -27,15 +27,15 @@
 
     - name: Récupération des infos et insertion dans le fichier infos_all.html
       lineinfile:
-        line: |
+        line: |-
           {{ inventory_hostname }}<br>
           {{ ansible_distribution }}-{{ ansible_distribution_version }}<br>
           RAM: {{ ansible_memtotal_mb }} MO<br>
           {% for iface in ansible_interfaces|sort -%}
             {% if iface != 'lo' -%}
               {{ iface }}: {{ lookup('vars','ansible_'+iface).ipv4.address }}<br>
-            {% endif %}
-          {% endfor %}
+            {% endif -%}
+          {%- endfor -%}
         dest: files/html/infos_all.html
       delegate_to: localhost
 
