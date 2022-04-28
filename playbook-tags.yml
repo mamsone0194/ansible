@@ -1,0 +1,38 @@
+---
+- name: Ansible et les tags
+  hosts: srv1
+
+  tasks:
+    - name: Tâche 1
+      debug:
+        msg: Tâche 1
+      tags: t1
+
+    - name: Tâche 2
+      debug:
+        msg: Tâche 2
+      tags: t2
+
+    - name: Tâche 3
+      debug:
+        msg: Tâche 3
+      tags: t1
+
+    - name: Tâche 4
+      debug:
+        msg: Tâche 4
+      tags: t2
+
+    - name: Tâche 5
+      debug:
+        msg: Tâche 5
+      tags: t1
+
+    - name: Tâche 6
+      debug:
+        msg: Tâche 6
+      tags: NomVraimentTresLongMaisVraimentTresLong
+
+    - name: Tâche 7
+      debug:
+        msg: Tâche 7
