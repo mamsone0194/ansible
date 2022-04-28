@@ -11,13 +11,13 @@
         - ansible_distribution_version == "7.6"
 
     - block:
-      - name: Tâche 1
-        debug:
-          msg: "Pas glop !"
-      - name: Tâche 2
-        debug:
-          msg: "Pas Glop !"
-      when: ansible_distribution|lower == 'debian'
+        - name: Tâche 1
+          debug:
+            msg: "Pas glop !"
+        - name: Tâche 2
+          debug:
+            msg: "Pas Glop !"
+      when: ansible_distribution|lower in ('debian','ubuntu')
 
     - name: Clause changed_when
       raw: grep bob /etc/passwd
@@ -45,7 +45,7 @@
 
     - name: On s'arrête si Bob introuvable
       fail:
-        msg: "Bob introuvable"
+        msg: "Bob: introuvable"
       when: result.rc == 1
 
     - name: Tâche bidon/témoin n°2
