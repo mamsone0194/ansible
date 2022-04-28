@@ -1,0 +1,13 @@
+---
+- name: Stopper éxécution playbook si ni debian ni ubuntu avec message erreur
+  hosts: all
+
+  tasks:
+    - name: On s'arrête si ni debian ni ubuntu
+      fail:
+        msg: "Distrib ni debian ni ubuntu"
+      when: ansible_distribution|lower not in ('debian','ubuntu')
+
+    - name: Pas de soucis
+      debug:
+        msg: "Bonne distrib : {{ ansible_distribution }}  on continue"
