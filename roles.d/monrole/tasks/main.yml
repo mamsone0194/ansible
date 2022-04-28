@@ -1,0 +1,16 @@
+---
+# tasks file for roles.d/monrole
+
+- name: Tâche 1
+  debug:
+    msg: "Tâche 1 de monrole ({{ stage }})"
+
+- name: Tâche 2
+  debug:
+    msg: "Login: {{ login }}"
+
+- name: Copie d'un fichier
+  copy:
+    src: monrole.txt
+    dest: /tmp
+  notify: copy_ok

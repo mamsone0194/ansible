@@ -1,0 +1,7 @@
+---
+# handlers file for roles.d/monrole
+
+- name: Handler de copy_ok
+  debug:
+    msg: "Copie OK"
+  listen: copy_ok

@@ -1,0 +1,7 @@
+---
+- name: Roles ansible
+  hosts: all
+
+  roles:
+    - role: monrole
+      stage: ansible
