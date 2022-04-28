@@ -1,0 +1,53 @@
+---
+- name: Ansible et les conditions
+  hosts: all
+
+  tasks:
+    - name: Affichage si distribution CentOS
+      debug:
+        msg: "Glop Glop!"
+      when:
+        - ansible_distribution|lower == 'centos'
+        - ansible_distribution_version == "7.6"
+
+    - block:
+      - name: Tâche 1
+        debug:
+          msg: "Pas glop !"
+      - name: Tâche 2
+        debug:
+          msg: "Pas Glop !"
+      when: ansible_distribution|lower == 'debian'
+
+    - name: Clause changed_when
+      raw: grep bob /etc/passwd
+      register: result
+      changed_when: false
+      failed_when: result.rc == 2
+
+    - name: Résultat
+      debug:
+        msg: "Bob introuvable !"
+      when: result.rc == 1
+      tags: never
+
+    - name: Bob existe-t-il, si non on sort
+      assert:
+        that:
+          - result.rc == 0
+        success_msg: Bob est là
+        fail_msg: Bob introuvable
+      tags: never
+
+    - name: Tâche bidon/témoin
+      debug:
+        msg: On continue...
+
+    - name: On s'arrête si Bob introuvable
+      fail:
+        msg: "Bob introuvable"
+      when: result.rc == 1
+
+    - name: Tâche bidon/témoin n°2
+      debug:
+        msg: On continue...
