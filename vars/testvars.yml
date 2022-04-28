@@ -11,15 +11,15 @@ formation:
   fin: 2022-04-29
 users:
   - login: bob
-    uid: 1000
-    gid: 1000
+    uid: 1010
+    gid: 1010
     groups:
       - adm
       - net
       - dev
   - login: curt
-    uid: 1010
-    gid: 1010
+    uid: 1020
+    gid: 1020
     groups:
       - dev
       - info
