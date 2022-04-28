@@ -1,0 +1,21 @@
+---
+- name: Ansible et loop
+  hosts: srv1
+
+  tasks:
+    - name: Affichage de plusieurs valeurs
+      debug:
+        msg: "{{ item }}"
+      loop:
+        - bob
+        - curt
+        - loé
+        - pat
+
+    - name: Liste des interfaces réseau
+      debug:
+        msg: "Interface n°{{ idx+1 }} : {{ iface }}"
+      loop: "{{ ansible_interfaces|sort }}"
+      loop_control:
+        index_var: idx
+        loop_var: iface
