@@ -13,6 +13,13 @@ users:
   - login: bob
     uid: 1000
     gid: 1000
+    groups:
+      - adm
+      - net
+      - dev
   - login: curt
     uid: 1010
     gid: 1010
+    groups:
+      - dev
+      - info

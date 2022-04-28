@@ -19,3 +19,17 @@
       loop_control:
         index_var: idx
         loop_var: iface
+
+    - name: Inclusion de variables
+      include_vars:
+        file: testvars.yml
+
+    - name: Liste des utilisateurs
+      debug:
+        msg: "{{ item.login }}"
+      loop: "{{ users }}"
+
+    - name: Liste des utilisateurs
+      debug:
+        msg: "{{ item.0.login }} {{ item.1 }} "
+      loop: "{{ users | subelements('groups') }}"
