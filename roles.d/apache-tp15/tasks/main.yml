@@ -1,0 +1,46 @@
+---
+# tasks file for roles.d/apache-tp15
+#
+
+- name: Chargement des variables de distribution
+  include_vars:
+    file: "{{ ansible_distribution }}.yml"
+
+- name: Mise à jour du cache apt
+  apt:
+    update_cache: true
+  when: ansible_distribution|lower == 'debian'
+
+- name: Installation du serveur Apache
+  package:
+    name: "{{ apache_package_name }}"
+    state: present
+
+- name: Activation et démarrage du service
+  systemd:
+    name: "{{ apache_service_name }}"
+    state: started
+    enabled: true
+
+- name: Arrêt et désactivation du service firewalld sur CentOS
+  systemd:
+    name: firewalld
+    state: stopped
+    enabled: false
+  when: ansible_distribution|lower == 'centos'
+
+- name: Modification du port d'écoute
+  lineinfile:
+    path: "{{ apache_port_file }}"
+    regex: ^Listen 
+    line: Listen {{ apache_port }}
+  notify: restart_apache
+
+- name: Déploiement du fichier index.html
+  template:
+    src: html/index.html.j2
+    dest: "{{ apache_html_dir }}/index.html"
+    owner: "{{ apache_html_owner }}"
+    mode: 0600
+  tags: index
+

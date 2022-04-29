@@ -1,0 +1,12 @@
+---
+# defaults file for roles.d/apache-tp15
+
+apache_port: 85
+apache_html_dir: /var/www/html
+stagiaires:
+  - André
+  - Younes
+  - Déborah
+  - Frédéric
+  - Mamadi
+  - Bob
